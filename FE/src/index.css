@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Ant Design Custom Styles */
+.ant-layout-sider-children::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ant-layout-sider-children::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.ant-layout-sider-children::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.ant-layout-sider-children::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.ant-menu-item:hover {
+  background-color: #f0f7ff !important;
+  color: #1890ff !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #e6f4ff !important;
+  color: #1890ff !important;
+  font-weight: 600;
+}
+
+.ant-menu-submenu-title:hover {
+  color: #1890ff !important;
+}
+
+.ant-dropdown {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ant-dropdown-menu {
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.ant-dropdown-menu-item {
+  border-radius: 6px;
+  margin-bottom: 2px;
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.ant-layout-content {
+  background: #f5f5f5;
+}
+
+/* Animation */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media print {
+  /* 1. Hide everything by default when printing */
+  body * {
+    visibility: hidden; /* Hide elements but keep space */
+  }
+
+  /* 2. Make ONLY the quote content and its children visible */
+  #quote-to-print, #quote-to-print * {
+    visibility: visible;
+  }
+
+  #quote-to-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0 !important; 
+    padding: 10px !important; 
+    border: none !important; 
+    box-shadow: none !important; 
+  }
+
+  /* 4. Hide specific layout elements */
+  .ant-layout-sider,  
+  .ant-layout-header, 
+  .ant-layout-footer, 
+  .action-buttons-container 
+   {
+    display: none !important; 
+  }
+
+   /* 5. Ensure the main layout content area doesn't have offsets */
+   .ant-layout-content {
+       margin-left: 0 !important; /* Reset margin from sidebar */
+       padding: 0 !important; /* Reset padding */
+   }
+}
