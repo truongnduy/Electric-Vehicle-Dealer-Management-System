@@ -48,13 +48,13 @@ public class Customer {
 
 
 
-    // 🔹 Liên kết đến dealer — để backend tự gán dealer khi tạo customer
+    // Liên kết đến dealer — để backend tự gán dealer khi tạo customer
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dealer_id", insertable = false, updatable = false)
     @JsonIgnore
     private Dealer dealer;
 
-    // 🔹 Ai là người tạo customer này
+    // Ai là người tạo customer này
     @Column(name = "createBy", length = 100)
     @Size(max = 100, message = "Created By must not exceed 100 characters")
     private String createBy;

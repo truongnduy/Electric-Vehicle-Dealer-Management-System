@@ -74,7 +74,7 @@ public class DealerServiceImpl implements DealerService {
         
         // Soft delete - chỉ đổi status thành INACTIVE
         dealerRepository.updateStatus(id, "INACTIVE");
-        log.info("🔴 Dealer {} deactivated (soft delete)", id);
+        log.info("Dealer {} deactivated (soft delete)", id);
     }
 
     @Override
@@ -84,6 +84,6 @@ public class DealerServiceImpl implements DealerService {
             throw new ResourceNotFoundException("Dealer not found");
         }
         dealerRepository.updateStatus(id, "ACTIVE");
-        log.info("🟢 Dealer {} reactivated", id);
+        log.info("Dealer {} reactivated", id);
     }
 }

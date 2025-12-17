@@ -13,7 +13,7 @@ import com.example.evm.entity.dealer.Dealer;
 import com.example.evm.entity.user.User;
 
 @Entity
-@Table(name = "`Order`")  // Escape từ khóa SQL
+@Table(name = "`Order`") // Escape từ khóa SQL
 @Getter
 @Setter
 @NoArgsConstructor
@@ -64,7 +64,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> orderDetails = new ArrayList<>();
 
-    @PrePersist 
+    @PrePersist
     protected void onCreate() {
         if (createdDate == null) {
             createdDate = LocalDateTime.now();
@@ -84,8 +84,14 @@ public class Order {
 
     public Double calculateTotalPrice() {
         return orderDetails.stream()
-                .mapToDouble(detail -> detail.getPrice() * detail.getQuantity())
-                .sum();
+                .map(detail -> {
+                    if (detail.getPrice() == null || detail.getQuantity() == null) {
+                        return java.math.BigDecimal.ZERO;
+                    }
+                    return detail.getPrice().multiply(java.math.BigDecimal.valueOf(detail.getQuantity()));
+                })
+                .reduce(java.math.BigDecimal.ZERO, java.math.BigDecimal::add)
+                .doubleValue();
     }
 
     // Helper methods để expose ID
@@ -104,11 +110,11 @@ public class Order {
     // Expose orderDetailId để trả về trong API (mỗi order có 1 detail)
     public Long getOrderDetailId() {
         return orderDetails != null && !orderDetails.isEmpty()
-            ? orderDetails.get(0).getOrderDetailId()
-            : null;
+                ? orderDetails.get(0).getOrderDetailId()
+                : null;
     }
 
-    // Override getter methods để thêm @JsonIgnore  
+    // Override getter methods để thêm @JsonIgnore
     @JsonIgnore
     public Customer getCustomer() {
         return customer;
@@ -128,5 +134,5 @@ public class Order {
     public List<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
-    
+
 }

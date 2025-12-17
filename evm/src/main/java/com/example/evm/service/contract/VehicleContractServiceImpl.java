@@ -70,9 +70,9 @@ public class VehicleContractServiceImpl implements VehicleContractService {
         if (vehicle == null)
             throw new ResourceNotFoundException("No vehicle linked to OrderDetail ID: " + request.getOrderDetailId());
 
-        // 🚫 Kiểm tra nếu xe là xe lái thử
+        // Kiểm tra nếu xe là xe lái thử
         if ("TEST_DRIVE".equalsIgnoreCase(vehicle.getStatus())) {
-            throw new IllegalStateException("🚫 Xe lái thử không thể được bán cho khách hàng.");
+            throw new IllegalStateException("Xe lái thử không thể được bán cho khách hàng.");
         }    
 
         Long dealerId = order.getDealer().getDealerId();
@@ -208,7 +208,7 @@ public class VehicleContractServiceImpl implements VehicleContractService {
     }
 
     /**
-     * 📄 Helper — Sinh file Word hợp đồng
+     * Helper — Sinh file Word hợp đồng
      */
     private String generateContractWord(VehicleContract contract) {
     try {
@@ -425,7 +425,7 @@ public class VehicleContractServiceImpl implements VehicleContractService {
     }
 
     /**
-     * 🔄 Map Entity → DTO Response
+     * Map Entity → DTO Response
      */
     private VehicleContractResponse mapToResponse(VehicleContract c) {
         return VehicleContractResponse.builder()

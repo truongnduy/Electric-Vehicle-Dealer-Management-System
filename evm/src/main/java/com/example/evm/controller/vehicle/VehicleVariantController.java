@@ -29,7 +29,7 @@ public class VehicleVariantController {
 
     private final VehicleVariantService variantService;
 
-    // ➕ TẠO MỚI một biến thể xe
+    // TẠO MỚI một biến thể xe
     @PostMapping 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'EVM_STAFF')")
     public ResponseEntity<ApiResponse<VehicleVariantResponse>> createVariant(
@@ -41,7 +41,7 @@ public class VehicleVariantController {
         return ResponseEntity.ok(new ApiResponse<>(true, "Variant created successfully", createdVariant));
     }
 
-    // 🟢 LẤY TẤT CẢ các biến thể (với optional dealerId để lấy giá dealer)
+    // LẤY TẤT CẢ các biến thể (với optional dealerId để lấy giá dealer)
     @GetMapping
     public ResponseEntity<ApiResponse<List<VehicleVariantResponse>>> getAllVariants(
             @RequestParam(required = false) Long dealerId) {
@@ -50,7 +50,7 @@ public class VehicleVariantController {
     }
 
 
-    // 🟢 LẤY MỘT biến thể theo ID (với optional dealerId để lấy giá dealer)
+    // LẤY MỘT biến thể theo ID (với optional dealerId để lấy giá dealer)
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<VehicleVariantResponse>> getVariantById(
             @PathVariable Long id,
@@ -59,7 +59,7 @@ public class VehicleVariantController {
         return ResponseEntity.ok(new ApiResponse<>(true, "Variant retrieved successfully", variant));
     }
 
-    // 🔄 CẬP NHẬT một biến thể
+    // CẬP NHẬT một biến thể
     @PutMapping(value = "/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'EVM_STAFF')")
     public ResponseEntity<ApiResponse<VehicleVariantResponse>> updateVariant(
@@ -72,7 +72,7 @@ public class VehicleVariantController {
         return ResponseEntity.ok(new ApiResponse<>(true, "Variant updated successfully", updatedVariant));
     }
 
-    // 🚫 DEACTIVATE a variant (soft delete)
+    // DEACTIVATE a variant (soft delete)
     @PutMapping("/deactivate/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'EVM_STAFF')")
     public ResponseEntity<ApiResponse<Void>> deactivateVariant(@PathVariable Long id) {
@@ -88,14 +88,14 @@ public class VehicleVariantController {
         return ResponseEntity.ok(new ApiResponse<>(true, "Variant activated successfully", null));
     }
 
-    // ➕ LẤY thông số kỹ thuật của một variant
+    // LẤY thông số kỹ thuật của một variant
     @GetMapping("/{variantId}/details")
     public ResponseEntity<ApiResponse<VehicleDetailResponse>> getVariantDetails(@PathVariable Long variantId) {
         VehicleDetailResponse details = variantService.getDetailsByVariantId(variantId);
         return ResponseEntity.ok(new ApiResponse<>(true, "Details retrieved successfully", details));
     }
 
-    // 🔄 THÊM thông số kỹ thuật cho một variant
+    // THÊM thông số kỹ thuật cho một variant
     @PostMapping("/{variantId}/details")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'EVM_STAFF')")
     public ResponseEntity<ApiResponse<VehicleDetailResponse>> createDetails(

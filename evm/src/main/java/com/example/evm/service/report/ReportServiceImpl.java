@@ -49,7 +49,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<ManufacturerInventoryReportDto> getManufacturerInventoryReport() {
-        log.info("🏭 Generating manufacturer inventory report...");
+        log.info("Generating manufacturer inventory report...");
         return vehicleRepository.getManufacturerInventoryReport();
     }
 

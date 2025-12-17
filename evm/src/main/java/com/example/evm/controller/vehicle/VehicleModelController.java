@@ -18,7 +18,7 @@ public class VehicleModelController {
 
     private final VehicleModelService modelService;
 
-    // ➕ TẠO MỚI một dòng xe
+    // TẠO MỚI một dòng xe
     @PostMapping
     @PreAuthorize("hasAnyAuthority('ADMIN', 'EVM_STAFF')")
     public ResponseEntity<ApiResponse<VehicleModelResponse>> createModel(@RequestBody VehicleModelRequest request) {
@@ -26,21 +26,21 @@ public class VehicleModelController {
         return ResponseEntity.ok(new ApiResponse<>(true, "Model created successfully", createdModel));
     }
 
-    // 🟢 LẤY TẤT CẢ các dòng xe
+    // LẤY TẤT CẢ các dòng xe
     @GetMapping
     public ResponseEntity<ApiResponse<List<VehicleModelResponse>>> getAllModels() {
         List<VehicleModelResponse> models = modelService.getAllModels();
         return ResponseEntity.ok(new ApiResponse<>(true, "Models retrieved successfully", models));
     }
 
-    // 🟢 LẤY MỘT dòng xe theo ID
+    // LẤY MỘT dòng xe theo ID
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<VehicleModelResponse>> getModelById(@PathVariable Long id) {
         VehicleModelResponse model = modelService.getModelById(id);
         return ResponseEntity.ok(new ApiResponse<>(true, "Model retrieved successfully", model));
     }
 
-    // 🔄 CẬP NHẬT một dòng xe
+    // CẬP NHẬT một dòng xe
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'EVM_STAFF')")
     public ResponseEntity<ApiResponse<VehicleModelResponse>> updateModel(@PathVariable Long id, @RequestBody VehicleModelRequest request) {

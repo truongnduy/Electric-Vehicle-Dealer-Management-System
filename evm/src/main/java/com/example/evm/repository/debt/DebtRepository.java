@@ -133,7 +133,7 @@ public interface DebtRepository extends JpaRepository<Debt, Long> {
     Double getTotalOutstandingByCustomer(@Param("customerId") Long customerId);
 
     /**
-     * 🔢 Đếm số lượng khoản nợ theo trạng thái cho một đại lý cụ thể.
+     * Đếm số lượng khoản nợ theo trạng thái cho một đại lý cụ thể.
      * @param dealerId ID của đại lý.
      * @param status Trạng thái nợ (ACTIVE, OVERDUE, PAID, v.v.)
      * @return Số lượng nợ tương ứng.
